@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button({ onclick, name, dataTestId, disabled }) {
+function Button({ onclick, name, dataTesteId, disabled }) {
   return (
     <button
       type="button"
       onClick={ onclick }
-      data-testid={ dataTestId }
+      data-testid={ dataTesteId }
       disabled={ disabled }
     >
       { name }
