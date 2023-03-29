@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const USER_LOGIN_NAME = 'USER_LOGIN_NAME';
 export const USER_LOGIN_EMAIL = 'USER_LOGIN_EMAIL';
 export const USER_LOGIN_PASSWORD = 'USER_LOGIN_PASSWORD';
@@ -18,7 +16,17 @@ export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 
 export const logar = ({ email, password }) => (dispatch) => {
   dispatch(loggingIn());
-  axios.post('http://localhost:3001/login', { email, password })
-    .then(({ data }) => dispatch(logginSucess(data)))
-    .catch((error) => dispatch(logginFailed(error)));
+  fetch('http://localhost:3001/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  }).then((response) => response.json())
+    .then((data) => {
+      if (data.role) return dispatch(logginSucess(data));
+      dispatch(logginFailed(data));
+    });
 };
+
+// dispatch(logginSucess(data))
