@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Invalid({ disable, dataTesteId, message }) {
+function Invalid({ desabilitado, dataTesteId, message }) {
   return (
     <div>
       {
-        disable
+        desabilitado
         && (
           <p
             data-testeid={ dataTesteId }
