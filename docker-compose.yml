@@ -10,6 +10,7 @@ services:
     working_dir: /front-end
     volumes: 
       - ./front-end/src:/app-frontend/src
+      - ./front-end/node_modules:/app-frontend/
     depends_on:
       backend:
         condition: service_healthy
@@ -30,6 +31,7 @@ services:
     command: dev 
     volumes: 
       - ./back-end/src:/app-backend/src
+      - ./back-end/node_modules:/app-backend/
     depends_on:
       db:
         condition: service_healthy
