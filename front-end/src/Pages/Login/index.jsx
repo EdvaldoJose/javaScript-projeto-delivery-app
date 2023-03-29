@@ -34,7 +34,8 @@ function Login() {
     const numberLength = 5;
     const testeEmail = /^\S+@\S+\.\S+$/.test(email);
     const validate = (password.length > numberLength && testeEmail);
-    if (validate) return dispatch(valideUser());
+    if (validate) return dispatch(valideUser(false));
+    dispatch(valideUser(true));
   }, [email, password, dispatch]);
 
   return (
