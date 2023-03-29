@@ -70,7 +70,7 @@ const userReducer = (state = initialState, action) => {
       ...state,
       inLogin: {
         ...state,
-        btnLogin: false,
+        btnLogin: action.bool,
       },
     };
 

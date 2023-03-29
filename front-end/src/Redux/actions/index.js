@@ -12,7 +12,7 @@ export const userLoginPassword = (password) => ({ type: USER_LOGIN_PASSWORD, pas
 export const loggingIn = () => ({ type: IN_LOGIN });
 export const logginSucess = (data) => ({ type: LOGIN_SUCESS, data });
 export const logginFailed = ({ message }) => ({ type: LOGIN_FAILED, message });
-export const valideUser = () => ({ type: USER_VALIDATE });
+export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 
 export const logar = ({ email, password }) => (dispatch) => {
   dispatch(loggingIn());
