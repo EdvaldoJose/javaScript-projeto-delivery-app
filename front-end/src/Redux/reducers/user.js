@@ -5,10 +5,12 @@ import {
   LOGIN_FAILED,
   IN_LOGIN,
   USER_VALIDATE,
+  USER_LOGIN_NAME,
 } from '../actions';
 
 const initialState = {
   user: {
+    name: '',
     email: '',
     password: '',
     role: '',
@@ -24,6 +26,11 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+  case USER_LOGIN_NAME:
+    return {
+      ...state,
+      user: { ...state.user, name: action.name },
+    };
   case USER_LOGIN_EMAIL:
     return {
       ...state,
