@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Input from '../../Components/Input';
 import {
   ROUTE,
@@ -10,8 +11,32 @@ import {
 } from '../../dataTesteIds';
 import Button from '../../Components/Button';
 import Invalid from '../../Components/Invalid';
+import {
+  userLoginEmail, userLoginPassword, logar, valideUser } from '../../Redux/actions';
 
 function Login() {
+  const { email, password } = useSelector((state) => state.user);
+  const { disable, message, btnLogin } = useSelector((state) => state.inLogin);
+
+  const dispatch = useDispatch();
+
+  const handleInputChange = ({ target: { value, name } }) => {
+    if (name === 'input-email') return dispatch(userLoginEmail(value));
+    dispatch(userLoginPassword(value));
+  };
+
+  const Logar = () => {
+    const obj = { email, password };
+    dispatch(logar(obj));
+  };
+
+  useEffect(() => {
+    const numberLength = 5;
+    const testeEmail = /^\S+@\S+\.\S+$/.test(email);
+    const validate = (password.length > numberLength && testeEmail);
+    if (validate) return dispatch(valideUser());
+  }, [email, password, dispatch]);
+
   return (
     <form>
       <Input
@@ -19,16 +44,22 @@ function Login() {
         type="email"
         name="input-email"
         dataTesteId={ `${ROUTE}__${ELEMENTEMAIL}` }
+        value={ email }
+        onChange={ handleInputChange }
       />
       <Input
         inputName="password"
         type="password"
         name="input-password"
         dataTesteId={ `${ROUTE}__${ELEMENTPASSWORD}` }
+        value={ password }
+        onChange={ handleInputChange }
       />
       <Button
         name="Login"
         dataTesteId={ `${ROUTE}__${ELEMENTBTLOGIN}` }
+        onclick={ Logar }
+        disabled={ btnLogin }
       />
       <Button
         name="Register"
@@ -36,8 +67,8 @@ function Login() {
       />
       <Invalid
         dataTestId={ `${ROUTE}__${ELEMENTINVALIDEMAIL}` }
-        message="Erro Login"
-        disabled={ false }
+        message={ message }
+        desabilitado={ disable }
       />
     </form>
   );
