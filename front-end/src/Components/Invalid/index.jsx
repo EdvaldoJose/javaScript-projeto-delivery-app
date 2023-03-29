@@ -6,13 +6,11 @@ function Invalid({ desabilitado, dataTesteId, message }) {
     <div>
       {
         desabilitado
-        && (
-          <p
-            data-testeid={ dataTesteId }
-          >
-            { message }
-          </p>
-        )
+      && (
+        <p data-testid={ dataTesteId }>
+          { message }
+        </p>
+      )
       }
     </div>
   );
