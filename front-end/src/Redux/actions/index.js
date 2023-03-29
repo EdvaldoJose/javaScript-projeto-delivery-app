@@ -17,6 +17,6 @@ export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 export const logar = ({ email, password }) => (dispatch) => {
   dispatch(loggingIn());
   axios.post('http://localhost:3001/login', { email, password })
-    .then((data) => dispatch(logginSucess(data.json())))
+    .then(({ data }) => dispatch(logginSucess(data)))
     .catch((error) => dispatch(logginFailed(error)));
 };
