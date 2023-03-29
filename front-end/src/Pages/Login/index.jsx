@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import Input from '../../Components/Input';
 import {
   ROUTE,
@@ -20,6 +20,9 @@ function Login() {
   const { disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const redirect = () => history.push('/register');
 
   const handleInputChange = ({ target: { value, name } }) => {
     if (name === 'input-email') return dispatch(userLoginEmail(value));
@@ -68,6 +71,7 @@ function Login() {
         <Button
           name="Register"
           dataTesteId={ `${ROUTE}__${ELEMENTBTREGISTER}` }
+          onclick={ redirect }
         />
         <Invalid
           dataTesteId={ `${ROUTE}__${ELEMENTINVALIDEMAIL}` }
