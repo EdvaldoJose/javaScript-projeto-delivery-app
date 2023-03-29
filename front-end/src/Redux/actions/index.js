@@ -28,5 +28,3 @@ export const logar = ({ email, password }) => (dispatch) => {
       dispatch(logginFailed(data));
     });
 };
-
-// dispatch(logginSucess(data))
