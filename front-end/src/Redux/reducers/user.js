@@ -51,7 +51,7 @@ const userReducer = (state = initialState, action) => {
         disable: false,
       },
       user: {
-        ...state,
+        ...state.user,
         role: action.data.role,
       },
     };
@@ -69,7 +69,7 @@ const userReducer = (state = initialState, action) => {
     return {
       ...state,
       inLogin: {
-        ...state,
+        ...state.inLogin,
         btnLogin: action.bool,
       },
     };
