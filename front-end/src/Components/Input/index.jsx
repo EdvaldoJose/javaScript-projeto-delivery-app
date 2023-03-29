@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Input({ inputName, type, name, onChange, dataTesteId }) {
+function Input({ inputName, type, name, onChange, dataTesteId, value }) {
   return (
     <label htmlFor={ inputName }>
       {`${type}: `}
@@ -9,6 +9,7 @@ function Input({ inputName, type, name, onChange, dataTesteId }) {
         type={ type }
         name={ name }
         id={ inputName }
+        value={ value }
         onChange={ onChange }
         data-testid={ dataTesteId }
       />
