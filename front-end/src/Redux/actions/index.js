@@ -5,6 +5,7 @@ export const IN_LOGIN = 'IN_LOGIN';
 export const LOGIN_SUCESS = 'LOGIN_SUCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const USER_VALIDATE = 'USER_VALIDATE';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
 
 export const userLoginEmail = (email) => ({ type: USER_LOGIN_EMAIL, email });
 export const userLoginName = (name) => ({ type: USER_LOGIN_NAME, name });
@@ -13,6 +14,7 @@ export const loggingIn = () => ({ type: IN_LOGIN });
 export const logginSucess = (data) => ({ type: LOGIN_SUCESS, data });
 export const logginFailed = ({ message }) => ({ type: LOGIN_FAILED, message });
 export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
+export const getProductsList = (data) => ({ type: GET_PRODUCTS, data });
 
 // export const logar = ({ email, password }) => async (dispatch) => {
 //   dispatch(loggingIn());
