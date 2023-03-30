@@ -13,7 +13,9 @@ import {
 import Button from '../../Components/Button';
 import Invalid from '../../Components/Invalid';
 import {
-  userLoginEmail, userLoginPassword, logar, valideUser } from '../../Redux/actions';
+  userLoginEmail,
+  userLoginPassword,
+  valideUser, loggingIn, logginSucess, logginFailed } from '../../Redux/actions';
 
 function Login() {
   const { email, password } = useSelector((state) => state.user);
@@ -29,9 +31,22 @@ function Login() {
     dispatch(userLoginPassword(value));
   };
 
-  const Logar = () => {
-    const obj = { email, password };
-    dispatch(logar(obj));
+  const Logar = async () => {
+    dispatch(loggingIn());
+
+    const response = await fetch('http://localhost:3001/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+    if (data.role) return dispatch(logginSucess(data));
+    dispatch(logginFailed(data));
+
+    return response;
   };
 
   useEffect(() => {
