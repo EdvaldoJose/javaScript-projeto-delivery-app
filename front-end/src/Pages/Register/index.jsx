@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
 import Invalid from '../../Components/Invalid';
@@ -18,7 +19,8 @@ import {
   valideUser,
   userLoginEmail,
   userLoginPassword,
-  cadastrar,
+  logginFailed,
+  logginSucess,
 } from '../../Redux/actions';
 
 function Register() {
@@ -30,9 +32,10 @@ function Register() {
     dispatch(userLoginName(value));
   };
 
-  const cadastrarUser = () => {
-    const obj = { email, password, name };
-    dispatch(cadastrar(obj));
+  const cadastrarUser = async () => {
+    await axios.post('http://localhost:3001/register', { email, password, name })
+      .then((response) => dispatch(logginSucess(response.data)))
+      .catch(({ response }) => dispatch(logginFailed(response.data)));
   };
 
   const handleInputChange = ({ target }) => {
