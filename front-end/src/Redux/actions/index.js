@@ -16,15 +16,16 @@ export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 
 export const logar = ({ email, password }) => async (dispatch) => {
   dispatch(loggingIn());
-  await fetch('http://localhost:3001/login', {
+  const response = await fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  }).then((response) => response.json())
-    .then((data) => {
-      if (data.role) return dispatch(logginSucess(data));
-      dispatch(logginFailed(data));
-    });
+  });
+  const data = await response.json();
+  if (data.role) return dispatch(logginSucess(data));
+  dispatch(logginFailed(data));
+
+  return response;
 };
