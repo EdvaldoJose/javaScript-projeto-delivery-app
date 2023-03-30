@@ -1,5 +1,5 @@
 const md5 = require('md5');
-const { NOT_FOUND, HTTP_OK } = require('../utils/http_status');
+const { NOT_FOUND, HTTP_OK, CREATED, CONFLICT } = require('../utils/http_status');
 
 const { User } = require('../../database/models');
 
@@ -16,6 +16,19 @@ async function login(email, password) {
     // const token = generateToken(user.dataValues);
     // console.log('TOKEN >>>>', token);
   return { code: HTTP_OK, role: user.dataValues };
-} 
+}
+
+async function createUser(obj) {
+  const data = await User.findOne({ where: { email: obj.email } });
+  if (data) return { code: CONFLICT, message: 'Email ja esta em uso', type: 'INPUT_VALUE' };
+
+  const password = md5(obj.password);
+
+  await User.create({ email: obj.email, password, name: obj.name });
+
+  const newUser = await User.findOne({ where: { email: obj.email } });
+
+  return { code: CREATED, role: newUser };
+}
   
-module.exports = { login };
+module.exports = { login, createUser };
