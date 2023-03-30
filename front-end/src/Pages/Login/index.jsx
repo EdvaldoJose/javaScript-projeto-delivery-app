@@ -29,7 +29,7 @@ function Login() {
     dispatch(userLoginPassword(value));
   };
 
-  const Logar = () => {
+  const Logar = async () => {
     const obj = { email, password };
     dispatch(logar(obj));
   };
