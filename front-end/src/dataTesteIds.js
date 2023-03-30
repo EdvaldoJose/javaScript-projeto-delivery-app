@@ -7,6 +7,7 @@ const ELEMENTPASSWORD = 'input-password';
 const ELEMENTBTLOGIN = 'button-login';
 const ELEMENTBTREGISTER = 'button-register';
 const ELEMENTINVALIDEMAIL = 'element-invalid-email';
+const ELEMENTINVALIDREGISTER = 'element-invalid_register';
 
 export {
   ROUTEREGISTER,
@@ -17,4 +18,5 @@ export {
   ELEMENTINVALIDEMAIL,
   ELEMENTPASSWORD,
   ELEMENTNAME,
+  ELEMENTINVALIDREGISTER,
 };
