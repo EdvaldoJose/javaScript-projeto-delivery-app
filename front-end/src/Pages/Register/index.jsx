@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
 import Invalid from '../../Components/Invalid';
@@ -10,21 +11,28 @@ import {
   ELEMENTPASSWORD,
   ELEMENTNAME,
   ELEMENTBTREGISTER,
-  ELEMENTINVALIDEMAIL,
+  ELEMENTINVALIDREGISTER,
 } from '../../dataTesteIds';
 import {
   userLoginName,
   valideUser,
   userLoginEmail,
-  userLoginPassword } from '../../Redux/actions';
+  userLoginPassword,
+  cadastrar,
+} from '../../Redux/actions';
 
 function Register() {
   const { email, password, name } = useSelector((state) => state.user);
-  const { disable, message, btnLogin } = useSelector((state) => state.inLogin);
+  const { disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
   const dispatch = useDispatch();
 
   const handleChangeName = ({ target: { value } }) => {
     dispatch(userLoginName(value));
+  };
+
+  const cadastrarUser = () => {
+    const obj = { email, password, name };
+    dispatch(cadastrar(obj));
   };
 
   const handleInputChange = ({ target }) => {
@@ -72,12 +80,17 @@ function Register() {
         name="Cadastrar"
         dataTesteId={ `${ROUTEREGISTER}__${ELEMENTBTREGISTER}` }
         disabled={ btnLogin }
+        onclick={ cadastrarUser }
       />
       <Invalid
-        dataTesteId={ `${ROUTEREGISTER}__${ELEMENTINVALIDEMAIL}` }
+        dataTesteId={ `${ROUTEREGISTER}__${ELEMENTINVALIDREGISTER}` }
         message={ message }
         desabilitado={ disable }
       />
+
+      {
+        allowed && <Redirect to="/customer/products" />
+      }
     </form>
   );
 }

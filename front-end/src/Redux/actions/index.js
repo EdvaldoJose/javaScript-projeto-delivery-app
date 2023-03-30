@@ -31,3 +31,22 @@ export const logar = ({ email, password }) => async (dispatch) => {
 
   return response;
 };
+
+export const cadastrar = (obj) => async (dispatch) => {
+  dispatch(loggingIn());
+
+  const response = await fetch('http://localhost:3001/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(obj),
+  });
+
+  const data = await response.json();
+  if (data.role) return dispatch(logginSucess(data));
+  dispatch(logginFailed(data));
+
+  console.log(response);
+  return response;
+};
