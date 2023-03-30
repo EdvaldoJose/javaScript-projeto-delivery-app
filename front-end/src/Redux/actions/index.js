@@ -14,21 +14,20 @@ export const logginSucess = (data) => ({ type: LOGIN_SUCESS, data });
 export const logginFailed = ({ message }) => ({ type: LOGIN_FAILED, message });
 export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 
-// export const logar = ({ email, password }) => async (dispatch) => {
-//   dispatch(loggingIn());
+export const logar = ({ email, password }) => async (dispatch) => {
+  dispatch(loggingIn());
 
-//   const response = await fetch('http://localhost:3001/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({ email, password }),
-//   });
+  const response = await fetch('http://localhost:3001/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  });
 
-//   const data = await response.json();
-//   if (data.role) return dispatch(logginSucess(data));
-//   dispatch(logginFailed(data));
+  const data = await response.json();
+  if (data.role) return dispatch(logginSucess(data));
+  dispatch(logginFailed(data));
 
-//   console.log(response);
-//   return response;
-// };
+  return response;
+};
