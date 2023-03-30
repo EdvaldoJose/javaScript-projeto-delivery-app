@@ -10,4 +10,11 @@ async function login(req, res) {
   return res.status(code).json(role);
 }
 
-module.exports = { login };
+async function createUser(req, res) {
+  const { code, message, type, role } = await service.createUser(req.body);
+  if (type) return res.status(code).json({ message });
+
+  return res.status(code).json(role);
+}
+
+module.exports = { login, createUser };
