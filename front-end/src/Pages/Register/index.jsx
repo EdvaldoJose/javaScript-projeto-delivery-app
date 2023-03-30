@@ -33,7 +33,7 @@ function Register() {
   };
 
   const cadastrarUser = async () => {
-    await axios.post('http://localhost:3001/register', { email, password, name })
+    await axios.post('http://localhost:3001/login/register', { email, password, name })
       .then((response) => dispatch(logginSucess(response.data)))
       .catch(({ response }) => dispatch(logginFailed(response.data)));
   };
