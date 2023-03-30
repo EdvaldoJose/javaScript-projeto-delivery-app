@@ -13,7 +13,10 @@ import {
 import Button from '../../Components/Button';
 import Invalid from '../../Components/Invalid';
 import {
-  userLoginEmail, userLoginPassword, logar, valideUser } from '../../Redux/actions';
+  userLoginEmail,
+  userLoginPassword,
+  valideUser, logginSucess, logginFailed } from '../../Redux/actions';
+import logar from '../../services/fetchLogin';
 
 function Login() {
   const { email, password } = useSelector((state) => state.user);
@@ -29,9 +32,12 @@ function Login() {
     dispatch(userLoginPassword(value));
   };
 
-  const Logar = async () => {
+  const userLogin = async () => {
     const obj = { email, password };
-    dispatch(logar(obj));
+    const result = await logar(obj);
+
+    if (result.role) return dispatch(logginSucess(result));
+    dispatch(logginFailed(result));
   };
 
   useEffect(() => {
@@ -65,7 +71,7 @@ function Login() {
         <Button
           name="Login"
           dataTesteId={ `${ROUTE}__${ELEMENTBTLOGIN}` }
-          onclick={ Logar }
+          onclick={ userLogin }
           disabled={ btnLogin }
         />
         <Button
