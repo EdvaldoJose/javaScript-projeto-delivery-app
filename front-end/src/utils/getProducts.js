@@ -1,9 +1,25 @@
+import { useEffect } from 'react';
 import axios from 'axios';
-// import { getProductsList } from '../Redux/actions';
+import { useDispatch } from 'react-redux';
+import { getProductsList } from '../Redux/actions';
 
-const getProducts = async () => {
-  await axios.get('http:/localhost:3001/products')
-    .then((data) => console.log(data));
+const useProducts = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/products');
+        dispatch(getProductsList(response.data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProducts();
+  }, [dispatch]);
+
+  return null;
 };
 
-export default getProducts;
+export default useProducts;

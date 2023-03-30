@@ -89,10 +89,9 @@ const userReducer = (state = initialState, action) => {
       ...state,
       products: {
         ...state.products,
-        products: action.data,
+        listProducts: action.data,
       },
     };
-
   default:
     return { ...state };
   }
