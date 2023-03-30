@@ -14,9 +14,9 @@ export const logginSucess = (data) => ({ type: LOGIN_SUCESS, data });
 export const logginFailed = ({ message }) => ({ type: LOGIN_FAILED, message });
 export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 
-export const logar = ({ email, password }) => (dispatch) => {
+export const logar = ({ email, password }) => async (dispatch) => {
   dispatch(loggingIn());
-  fetch('http://localhost:3001/login', {
+  await fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
