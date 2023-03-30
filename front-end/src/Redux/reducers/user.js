@@ -6,6 +6,7 @@ import {
   IN_LOGIN,
   USER_VALIDATE,
   USER_LOGIN_NAME,
+  GET_PRODUCTS,
 } from '../actions';
 
 const initialState = {
@@ -21,6 +22,9 @@ const initialState = {
     disable: false,
     message: '',
     btnLogin: true,
+  },
+  products: {
+    listProducts: [],
   },
 };
 
@@ -78,6 +82,14 @@ const userReducer = (state = initialState, action) => {
       inLogin: {
         ...state.inLogin,
         btnLogin: action.bool,
+      },
+    };
+  case GET_PRODUCTS:
+    return {
+      ...state,
+      products: {
+        ...state.products,
+        products: action.data,
       },
     };
 
