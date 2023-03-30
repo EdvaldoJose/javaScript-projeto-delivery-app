@@ -1,9 +1,10 @@
 import React from 'react';
+import NavBar from '../../Components/NavBar';
 
-function PRoducts() {
+function Products() {
   return (
-    <div>PRoducts</div>
+    <NavBar />
   );
 }
 
-export default PRoducts;
+export default Products;
