@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
+import axios from 'axios';
 import Input from '../../Components/Input';
 import {
   ROUTE,
@@ -16,7 +17,6 @@ import {
   userLoginEmail,
   userLoginPassword,
   valideUser, logginSucess, logginFailed } from '../../Redux/actions';
-import logar from '../../services/fetchLogin';
 
 function Login() {
   const { email, password } = useSelector((state) => state.user);
@@ -33,11 +33,9 @@ function Login() {
   };
 
   const userLogin = async () => {
-    const obj = { email, password };
-    const result = await logar(obj);
-
-    if (result.role) return dispatch(logginSucess(result));
-    dispatch(logginFailed(result));
+    await axios.post('http://localhost:3001/login', { email, password })
+      .then((response) => dispatch(logginSucess(response.data)))
+      .catch(({ response }) => dispatch(logginFailed(response.data)));
   };
 
   useEffect(() => {
