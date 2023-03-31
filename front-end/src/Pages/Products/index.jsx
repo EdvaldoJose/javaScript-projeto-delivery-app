@@ -34,7 +34,9 @@ function Products() {
             <p
               data-testid={ `${ROUTEPRODUCTS}__element-card-price-${item.id}` }
             >
-              {item.price}
+              {
+                item.price.replace(/\./, ',')
+              }
 
             </p>
             <img
