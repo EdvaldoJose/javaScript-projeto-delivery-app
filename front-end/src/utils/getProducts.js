@@ -10,7 +10,6 @@ const useProducts = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:3001/products');
-        localStorage.setItem('products', JSON.stringify(response.data));
         dispatch(getProductsList(response.data));
       } catch (error) {
         console.log(error);
