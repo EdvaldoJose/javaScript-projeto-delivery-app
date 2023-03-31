@@ -2,6 +2,7 @@ export const USER_LOGIN_NAME = 'USER_LOGIN_NAME';
 export const USER_LOGIN_EMAIL = 'USER_LOGIN_EMAIL';
 export const USER_LOGIN_PASSWORD = 'USER_LOGIN_PASSWORD';
 export const IN_LOGIN = 'IN_LOGIN';
+export const RETURN_LOGIN = 'RETURN_LOGIN';
 export const LOGIN_SUCESS = 'LOGIN_SUCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const USER_VALIDATE = 'USER_VALIDATE';
@@ -15,6 +16,7 @@ export const logginSucess = (data) => ({ type: LOGIN_SUCESS, data });
 export const logginFailed = ({ message }) => ({ type: LOGIN_FAILED, message });
 export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 export const getProductsList = (data) => ({ type: GET_PRODUCTS, data });
+export const quitLogin = () => ({ type: RETURN_LOGIN });
 
 // export const logar = ({ email, password }) => async (dispatch) => {
 //   dispatch(loggingIn());
