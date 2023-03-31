@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import NavBar from '../../Components/NavBar';
 import useProducts from '../../utils/getProducts';
 import { ROUTEPRODUCTS } from '../../dataTesteIds';
@@ -7,6 +8,14 @@ import { ROUTEPRODUCTS } from '../../dataTesteIds';
 function Products() {
   const { listProducts } = useSelector((state) => state.products);
   useProducts();
+  const history = useHistory();
+
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem('user')) || { token: '' };
+    if (!local.token) {
+      history.push('/');
+    }
+  }, []);
 
   return (
     <>
@@ -44,7 +53,7 @@ function Products() {
             </button>
             <input
               data-testid={ `${ROUTEPRODUCTS}__input-card-quantity-${item.id}` }
-              value={ 0 }
+              defaultValue={ item.quantity }
             />
             <button
               type="button"
