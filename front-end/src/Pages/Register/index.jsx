@@ -25,7 +25,8 @@ import {
 
 function Register() {
   const { email, password, name } = useSelector((state) => state.user);
-  const { disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
+  const {
+    disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
   const dispatch = useDispatch();
 
   const handleChangeName = ({ target: { value } }) => {
