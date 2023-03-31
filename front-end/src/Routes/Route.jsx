@@ -2,6 +2,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
+import Products from '../Pages/Products';
 
 function Rotas() {
   return (
@@ -11,6 +12,7 @@ function Rotas() {
       </Route>
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
+      <Route path="/customer/products" component={ Products } />
     </Switch>
   );
 }

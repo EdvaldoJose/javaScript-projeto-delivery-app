@@ -25,7 +25,8 @@ import {
 
 function Register() {
   const { email, password, name } = useSelector((state) => state.user);
-  const { disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
+  const {
+    disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
   const dispatch = useDispatch();
 
   const handleChangeName = ({ target: { value } }) => {
@@ -33,7 +34,7 @@ function Register() {
   };
 
   const cadastrarUser = async () => {
-    await axios.post('http://localhost:3001/register', { email, password, name })
+    await axios.post('http://localhost:3001/login/register', { email, password, name })
       .then((response) => dispatch(logginSucess(response.data)))
       .catch(({ response }) => dispatch(logginFailed(response.data)));
   };

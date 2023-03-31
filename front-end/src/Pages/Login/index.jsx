@@ -20,7 +20,8 @@ import {
 
 function Login() {
   const { email, password } = useSelector((state) => state.user);
-  const { disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
+  const {
+    disable, message, btnLogin, allowed } = useSelector((state) => state.inLogin);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,7 +35,10 @@ function Login() {
 
   const userLogin = async () => {
     await axios.post('http://localhost:3001/login', { email, password })
-      .then((response) => dispatch(logginSucess(response.data)))
+      .then((response) => {
+        localStorage.setItem('user', JSON.stringify(response.data));
+        dispatch(logginSucess(response.data));
+      })
       .catch(({ response }) => dispatch(logginFailed(response.data)));
   };
 
