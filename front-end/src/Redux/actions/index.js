@@ -7,6 +7,8 @@ export const LOGIN_SUCESS = 'LOGIN_SUCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const USER_VALIDATE = 'USER_VALIDATE';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const ATUALIZA_ITEMS = 'ATUALIZA_ITEMS';
+export const SUBTOTAL_ITEMS = 'SUBTOTAL_ITEMS';
 
 export const userLoginEmail = (email) => ({ type: USER_LOGIN_EMAIL, email });
 export const userLoginName = (name) => ({ type: USER_LOGIN_NAME, name });
@@ -17,6 +19,8 @@ export const logginFailed = ({ message }) => ({ type: LOGIN_FAILED, message });
 export const valideUser = (bool) => ({ type: USER_VALIDATE, bool });
 export const getProductsList = (data) => ({ type: GET_PRODUCTS, data });
 export const quitLogin = () => ({ type: RETURN_LOGIN });
+export const atualizaItems = (array) => ({ type: ATUALIZA_ITEMS, array });
+export const addSubtotal = (result) => ({ type: SUBTOTAL_ITEMS, result });
 
 // export const logar = ({ email, password }) => async (dispatch) => {
 //   dispatch(loggingIn());
