@@ -19,7 +19,7 @@ function Products() {
       history.push('/');
       dispatch(quitLogin());
     }
-  }, []);
+  }, [history, dispatch]);
 
   const goToCheckout = () => {
     history.push('/customer/checkout');
