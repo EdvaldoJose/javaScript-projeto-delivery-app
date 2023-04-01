@@ -29,6 +29,9 @@ async function createUser(obj) {
 
   const newUser = await User.findOne({ where: { email: obj.email } });
 
+  const token = createToken(newUser.dataValues);
+  newUser.dataValues.token = token;
+
   return { code: CREATED, role: newUser };
 }
   
