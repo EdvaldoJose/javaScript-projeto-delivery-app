@@ -44,7 +44,7 @@ const loginReducer = (state = initialState, action) => {
   case RETURN_LOGIN:
     return {
       ...state,
-      allowed: true,
+      allowed: false,
     };
   default:
     return { ...state };
