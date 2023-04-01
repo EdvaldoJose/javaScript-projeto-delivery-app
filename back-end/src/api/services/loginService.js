@@ -2,7 +2,7 @@ const md5 = require('md5');
 const { NOT_FOUND, HTTP_OK, CREATED, CONFLICT } = require('../utils/http_status');
 
 const { User } = require('../../database/models');
-const createToken = require('../utils/http_status/jwtToken');
+const createToken = require('../utils/jwtToken');
 
 async function login(email, password) {
   const user = await User.findOne({ 
@@ -28,6 +28,9 @@ async function createUser(obj) {
   await User.create({ email: obj.email, password, name: obj.name });
 
   const newUser = await User.findOne({ where: { email: obj.email } });
+
+  const token = createToken(newUser.dataValues);
+  newUser.dataValues.token = token;
 
   return { code: CREATED, role: newUser };
 }
