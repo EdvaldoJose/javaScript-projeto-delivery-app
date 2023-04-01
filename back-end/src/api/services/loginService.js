@@ -2,7 +2,7 @@ const md5 = require('md5');
 const { NOT_FOUND, HTTP_OK, CREATED, CONFLICT } = require('../utils/http_status');
 
 const { User } = require('../../database/models');
-const createToken = require('../utils/http_status/jwtToken');
+// const createToken = require('../utils/jwtToken');
 
 async function login(email, password) {
   const user = await User.findOne({ 
@@ -14,8 +14,8 @@ async function login(email, password) {
   
   const valid = passwordHash === user.dataValues.password;
   if (!valid) return { code: NOT_FOUND, message: 'Invalid Password', type: 'INPUT_VALUE' };
-  const token = createToken(user.dataValues);
-  user.dataValues.token = token;
+  // const token = createToken(user.dataValues);
+  // user.dataValues.token = token;
   return { code: HTTP_OK, role: user.dataValues };
 }
 
