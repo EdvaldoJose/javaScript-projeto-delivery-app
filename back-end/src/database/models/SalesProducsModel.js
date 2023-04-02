@@ -10,10 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     product_id: {
       type: DataTypes.INTEGER,
       foreignKey: true,
+    },
+    quantity: {
+      type:DataTypes.INTEGER,
     }
   },
   {
-    tableName: 'posts_categories',
+    tableName: 'sales_products',
     timestamps: false,
     underscored: true,
   });
