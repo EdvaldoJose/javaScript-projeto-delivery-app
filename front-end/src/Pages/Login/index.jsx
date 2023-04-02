@@ -43,6 +43,7 @@ function Login() {
       const response = await api.post('/login', { email, password });
       localStorage.setItem('user', JSON.stringify(response.data));
       dispatch(logginSucess(response.data));
+      if (response.data.role === 'seller') return history.push('/seller/orders');
     } catch ({ response }) {
       dispatch(logginFailed(response.data));
     }
