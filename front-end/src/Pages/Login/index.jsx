@@ -33,13 +33,19 @@ function Login() {
     dispatch(userLoginPassword(value));
   };
 
+  const api = axios.create({
+    baseURL: 'http://localhost:3001',
+    proxy: false,
+  });
+
   const userLogin = async () => {
-    await axios.post('http://localhost:3001/login', { email, password })
-      .then((response) => {
-        localStorage.setItem('user', JSON.stringify(response.data));
-        dispatch(logginSucess(response.data));
-      })
-      .catch(({ response }) => dispatch(logginFailed(response.data)));
+    try {
+      const response = await api.post('/login', { email, password });
+      localStorage.setItem('user', JSON.stringify(response.data));
+      dispatch(logginSucess(response.data));
+    } catch ({ response }) {
+      dispatch(logginFailed(response.data));
+    }
   };
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const sale = sequelize.define('Sale', {
     id: {
