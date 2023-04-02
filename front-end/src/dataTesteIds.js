@@ -1,6 +1,5 @@
 // Login
 const ROUTE = 'common_login';
-const ROUTEREGISTER = 'common_register';
 const ROUTEPRODUCTS = 'customer_products';
 const ELEMENTNAME = 'input-name';
 const ELEMENTEMAIL = 'input-email';
@@ -11,10 +10,14 @@ const ELEMENTINVALIDEMAIL = 'element-invalid-email';
 const ELEMENTINVALIDREGISTER = 'element-invalid_register';
 
 // CUSTOMER PRODUCTS
+const ROUTEREGISTER = 'common_register';
 const CUSTOMERLINKPRODUCTS = 'element-navbar-link-products';
 const CUSTOMERLINKORDERS = 'element-navbar-link-orders';
 const CUSTOMERFULLNAME = 'element-navbar-user-full-name';
 const CUSTOMERLOGOUT = 'element-navbar-link-logout';
+
+// SELLER ORDERS
+const ROUTESELLERORDERS = 'seller_orders__';
 
 export {
   ROUTEREGISTER,
@@ -31,4 +34,5 @@ export {
   CUSTOMERLINKORDERS,
   CUSTOMERFULLNAME,
   CUSTOMERLOGOUT,
+  ROUTESELLERORDERS,
 };
