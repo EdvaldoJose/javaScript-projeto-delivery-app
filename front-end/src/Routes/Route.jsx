@@ -3,6 +3,7 @@ import React from 'react';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Products from '../Pages/Products';
+import SellerOrders from '../Pages/SellerOrders';
 
 function Rotas() {
   return (
@@ -13,6 +14,9 @@ function Rotas() {
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Products } />
+
+      {/* Tela pessoa vendedora */}
+      <Route path="/seller/orders" component={ SellerOrders } />
     </Switch>
   );
 }
