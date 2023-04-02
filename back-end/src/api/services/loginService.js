@@ -6,7 +6,7 @@ const createToken = require('../utils/jwtToken');
 
 async function login(email, password) {
   const user = await User.findOne({ 
-    attributes: ['role', 'email', 'name', 'password'], where: { email } });
+    attributes: ['role', 'email', 'name', 'password', 'id'], where: { email } });
   
   if (!user) return { code: NOT_FOUND, message: 'User not found', type: 'INPUT_VALUE' };
 
