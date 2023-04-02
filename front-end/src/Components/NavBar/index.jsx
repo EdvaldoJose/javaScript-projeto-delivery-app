@@ -12,7 +12,7 @@ import { quitLogin } from '../../Redux/actions';
 
 function NavBar() {
   const history = useHistory();
-  const { name } = useSelector((state) => state.user);
+  const { name, role } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const quit = () => {
@@ -22,18 +22,23 @@ function NavBar() {
   };
   return (
     <nav>
-      <Link
-        to="/customer/products"
-        data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERLINKPRODUCTS}` }
-      >
-        PRODUTOS
+      {
+        role === 'user'
+      && (
+        <Link
+          to="/customer/products"
+          data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERLINKPRODUCTS}` }
+        >
+          PRODUTOS
 
-      </Link>
+        </Link>
+      )
+      }
       <Link
-        to="/orders"
+        to={ role === 'user' ? '/customer/orders' : '/seller/orders' }
         data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERLINKORDERS}` }
       >
-        MEU PEDIDOS
+        { role === 'seller' ? 'Pedidos' : 'Meus Pedidos'}
 
       </Link>
       <p data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERFULLNAME}` }>{ name }</p>
