@@ -9,6 +9,7 @@ export const USER_VALIDATE = 'USER_VALIDATE';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const ATUALIZA_ITEMS = 'ATUALIZA_ITEMS';
 export const SUBTOTAL_ITEMS = 'SUBTOTAL_ITEMS';
+export const SELLER_ORDERS = 'SELLER_ORDERS';
 
 export const userLoginEmail = (email) => ({ type: USER_LOGIN_EMAIL, email });
 export const userLoginName = (name) => ({ type: USER_LOGIN_NAME, name });
@@ -21,3 +22,4 @@ export const getProductsList = (data) => ({ type: GET_PRODUCTS, data });
 export const quitLogin = () => ({ type: RETURN_LOGIN });
 export const atualizaItems = (array) => ({ type: ATUALIZA_ITEMS, array });
 export const addSubtotal = (result) => ({ type: SUBTOTAL_ITEMS, result });
+export const getSellerOrders = (result) => ({ type: SELLER_ORDERS, result });
