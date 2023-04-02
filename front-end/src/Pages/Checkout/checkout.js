@@ -86,7 +86,7 @@ export default function Checkout() {
                 <td
                   data-testid={ `${CUSTOMERCHECKOUT}${CUSTOMERTABLEITEM}${index}` }
                 >
-                  {item.id}
+                  { index + 1 }
 
                 </td>
                 <td
