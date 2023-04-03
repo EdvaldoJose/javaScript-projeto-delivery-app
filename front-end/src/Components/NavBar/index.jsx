@@ -23,7 +23,7 @@ function NavBar() {
   return (
     <nav>
       {
-        role === 'user'
+        (role === 'administrator' || role === 'customer')
       && (
         <Link
           to="/customer/products"
