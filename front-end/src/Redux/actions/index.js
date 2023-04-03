@@ -14,6 +14,7 @@ export const ENDERECO_NUMBER = 'ENDERECO_NUMBER';
 export const GET_SELLERS = 'GET_SELLERS';
 export const SELECT_SELLER = 'SELECT_SELLER';
 export const SELLER_ORDERS = 'SELLER_ORDERS';
+export const SALE_DATA = 'SALE_DATA';
 
 export const userLoginEmail = (email) => ({ type: USER_LOGIN_EMAIL, email });
 export const userLoginName = (name) => ({ type: USER_LOGIN_NAME, name });
@@ -31,3 +32,4 @@ export const addEnderecoNumber = (number) => ({ type: ENDERECO_NUMBER, number })
 export const getSellers = (data) => ({ type: GET_SELLERS, data });
 export const selectSeller = (value) => ({ type: SELECT_SELLER, value });
 export const getSellerOrders = (result) => ({ type: SELLER_ORDERS, result });
+export const getSales = (data) => ({ type: SALE_DATA, data });
