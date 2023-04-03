@@ -6,6 +6,7 @@ import Products from '../Pages/Products';
 import Checkout from '../Pages/Checkout/checkout';
 import SellerOrders from '../Pages/SellerOrders';
 import Customer from '../Pages/Customer';
+import SellerOrderDetails from '../Pages/SellerOrdersDetails';
 
 function Rotas() {
   return (
@@ -18,9 +19,10 @@ function Rotas() {
       <Route path="/customer/products" component={ Products } />
 
       {/* Tela pessoa vendedora */}
-      <Route path="/seller/orders" component={ SellerOrders } />
+      <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
+      <Route exact path="/customer/orders/:id" component={ Customer } />
       <Route path="/customer/checkout" component={ Checkout } />
-      <Route path="/customer/orders/:id" component={ Customer } />
+      <Route exact path="/seller/orders" component={ SellerOrders } />
     </Switch>
   );
 }
