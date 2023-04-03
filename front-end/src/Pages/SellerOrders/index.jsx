@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import NavBar from '../../Components/NavBar';
 import useSellerOrders from '../../utils/getSellerOrders';
 
 function SellerOrders() {
   useSellerOrders();
+  const history = useHistory();
   const { sellerOrders } = useSelector((state) => state.products);
   return (
     <>
@@ -13,11 +15,13 @@ function SellerOrders() {
         {
           sellerOrders.map((item, index) => (
             <div key={ index }>
-              <div
+              <button
+                type="button"
                 data-testid={ `seller_orders__element-order-id-${item.id}` }
+                onClick={ () => history.push(`/seller/orders/${item.id}`) }
               >
                 { item.id }
-              </div>
+              </button>
               <div>
                 <div
                   data-testid={ `seller_orders__element-delivery-status-${item.id}` }
