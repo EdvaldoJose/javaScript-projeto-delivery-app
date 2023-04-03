@@ -16,6 +16,20 @@ const CUSTOMERLINKORDERS = 'element-navbar-link-orders';
 const CUSTOMERFULLNAME = 'element-navbar-user-full-name';
 const CUSTOMERLOGOUT = 'element-navbar-link-logout';
 
+// CUSTOMER CHECKOUT
+const CUSTOMERCHECKOUT = 'customer_checkout__';
+const CUSTOMERTABLEITEM = 'element-order-table-item-number-';
+const CUSTOMERITEMNAME = 'element-order-table-name-';
+const ORDERQUANTITY = 'element-order-table-quantity-';
+const ORDERUNITYPRICE = 'element-order-table-unit-price-';
+const ORDERSUBTOTAL = 'element-order-table-sub-total-';
+const ORDERBUTTONREMOVE = 'element-order-table-remove-';
+const ORDERTOTAL = 'element-order-total-price';
+const ORDERSALE = 'select-seller';
+const INPUTADDRES = 'input-address';
+const FINISHBUTTON = 'button-submit-order';
+const INPUTNUMBER = 'input-address-number';
+
 // SELLER ORDERS
 const ROUTESELLERORDERS = 'seller_orders__';
 
@@ -34,5 +48,17 @@ export {
   CUSTOMERLINKORDERS,
   CUSTOMERFULLNAME,
   CUSTOMERLOGOUT,
+  CUSTOMERCHECKOUT,
+  CUSTOMERTABLEITEM,
+  CUSTOMERITEMNAME,
+  ORDERQUANTITY,
+  ORDERUNITYPRICE,
+  ORDERSUBTOTAL,
+  ORDERBUTTONREMOVE,
+  ORDERTOTAL,
+  ORDERSALE,
+  INPUTADDRES,
+  FINISHBUTTON,
+  INPUTNUMBER,
   ROUTESELLERORDERS,
 };

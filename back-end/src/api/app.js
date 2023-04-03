@@ -8,6 +8,6 @@ app.use(express.json());
 app.use('/images', express.static('public'));
 app.use('/login', loginRoutes);
 app.use('/products', productRoutes);
-app.use('/seller', salesRoutes);
+app.use('/sales', salesRoutes);
 
 module.exports = app;

@@ -3,6 +3,7 @@ import React from 'react';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Products from '../Pages/Products';
+import Checkout from '../Pages/Checkout/checkout';
 import SellerOrders from '../Pages/SellerOrders';
 
 function Rotas() {
@@ -17,6 +18,7 @@ function Rotas() {
 
       {/* Tela pessoa vendedora */}
       <Route path="/seller/orders" component={ SellerOrders } />
+      <Route path="/customer/checkout" component={ Checkout } />
     </Switch>
   );
 }
