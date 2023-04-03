@@ -93,7 +93,7 @@ function Products() {
             </p>
             <img
               data-testid={ `${ROUTEPRODUCTS}__img-card-bg-image-${item.id}` }
-              src={ item.url_image }
+              src={ item.urlImage }
               alt={ item.name }
               width="258px"
               height="258px"
