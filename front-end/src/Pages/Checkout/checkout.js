@@ -76,7 +76,8 @@ export default function Checkout() {
       totalPrice: total.replace(',', '.'),
       deliveryAddress: endereco,
       deliveryNumber: endNumber,
-      status: 'pendente',
+      status: 'Pendente',
+      productList: listProducts.filter((item) => item.quantity > 0),
     };
 
     const id = await createSale(objSale, user.token);
