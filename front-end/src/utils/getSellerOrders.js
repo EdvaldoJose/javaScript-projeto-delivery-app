@@ -10,7 +10,7 @@ const useSellerOrders = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/seller/orders/${id}`);
+        const response = await axios.get(`http://localhost:3001/sales/orders/${id}`);
         dispatch(getSellerOrders(response.data));
       } catch (error) {
         console.log(error);
