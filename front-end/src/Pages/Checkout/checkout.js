@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   addEndereco,
   addEnderecoNumber,
@@ -25,11 +26,15 @@ import {
   INPUTNUMBER,
 
 } from '../../dataTesteIds';
+import useGetSellers from '../../utils/getAllSellers';
+import createSale from '../../utils/createSale';
 
 export default function Checkout() {
+  useGetSellers();
   const { listProducts, total } = useSelector((state) => state.products);
-  const { endereco, endNumber, sellers } = useSelector((state) => state.user);
+  const { endereco, endNumber, sellers, seller } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const subtotal = () => {
     const result = listProducts.reduce((acc, curr) => {
@@ -55,17 +60,27 @@ export default function Checkout() {
   };
 
   const handleVendedor = ({ target: { value } }) => {
-    console.log(value);
     dispatch(selectSeller(value));
-  };
-
-  const handleId = () => {
-    // props.history.push(`/customer/orders/${idVendendor}`);
   };
 
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'end') return dispatch(addEndereco(value));
     dispatch(addEnderecoNumber(value));
+  };
+
+  const handleSale = async () => {
+    const user = JSON.parse(localStorage.getItem('user') || null);
+    const objSale = {
+      userId: user.id,
+      sellerId: sellers.find((sel) => sel.name === seller).id,
+      totalPrice: total.replace(',', '.'),
+      deliveryAddress: endereco,
+      deliveryNumber: endNumber,
+      status: 'pendente',
+    };
+
+    const id = await createSale(objSale, user.token);
+    history.push(`/customer/orders/${id}`);
   };
 
   return (
@@ -141,9 +156,15 @@ export default function Checkout() {
               data-testid={ `${CUSTOMERCHECKOUT}${ORDERSALE}` }
               id="vendedora"
               onClick={ handleVendedor }
+              defaultValue="Fulana Pereira"
             >
               {sellers.map(
-                (p, index) => <option key={ index }>{p}</option>,
+                (p, index) => (
+                  <option
+                    key={ index }
+                  >
+                    {p.name}
+                  </option>),
               )}
             </select>
           </label>
@@ -174,7 +195,7 @@ export default function Checkout() {
           <button
             data-testid={ `${CUSTOMERCHECKOUT}${FINISHBUTTON}` }
             type="button"
-            onClick={ () => handleId() }
+            onClick={ handleSale }
           >
             Finalizar Pedido
 
