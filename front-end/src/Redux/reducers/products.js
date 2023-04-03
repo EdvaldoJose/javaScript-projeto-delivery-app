@@ -1,10 +1,17 @@
-import { GET_PRODUCTS, ATUALIZA_ITEMS, SUBTOTAL_ITEMS, SELLER_ORDERS } from '../actions';
+import {
+  GET_PRODUCTS,
+  ATUALIZA_ITEMS,
+  SUBTOTAL_ITEMS,
+  SELLER_ORDERS,
+  SALE_DATA,
+} from '../actions';
 
 const initialState = {
   listProducts: [],
   total: 0,
   btnDisable: true,
   sellerOrders: [],
+  sales: [],
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -29,6 +36,11 @@ const productsReducer = (state = initialState, action) => {
     return {
       ...state,
       sellerOrders: action.result,
+    };
+  case SALE_DATA:
+    return {
+      ...state,
+      sales: action.data,
     };
   default:
     return { ...state };
