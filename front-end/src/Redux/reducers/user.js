@@ -18,7 +18,7 @@ const initialState = {
   endereco: '',
   endNumber: '',
   sellers: ['Fulana', 'Ciclano', 'Beltrano'],
-  seller: '',
+  seller: 'Fulana Pereira',
 };
 
 const userReducer = (state = initialState, action) => {
