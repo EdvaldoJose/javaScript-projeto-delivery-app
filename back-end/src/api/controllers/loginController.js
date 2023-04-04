@@ -28,4 +28,14 @@ async function getAllUsers(_req, res) {
   res.status(200).json(result);
 }
 
-module.exports = { login, createUser, createUserByAdm, getAllUsers };
+async function deleteUser(req, res) {
+  const result = await service.deleteUser(req.params.id);
+  res.status(200).json(result);
+}
+
+module.exports = { 
+  login, 
+  createUser, 
+  createUserByAdm, 
+  getAllUsers, 
+  deleteUser };
