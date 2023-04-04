@@ -23,4 +23,9 @@ async function createUserByAdm(req, res) {
   res.status(code).json(user);
 }
 
-module.exports = { login, createUser, createUserByAdm };
+async function getAllUsers(_req, res) {
+  const result = await service.getAllUsers();
+  res.status(200).json(result);
+}
+
+module.exports = { login, createUser, createUserByAdm, getAllUsers };
