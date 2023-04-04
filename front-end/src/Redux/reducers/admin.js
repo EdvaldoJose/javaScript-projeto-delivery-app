@@ -4,6 +4,8 @@ import {
   NEW_USER_PASSWORD,
   NEW_USER_ROLE,
   ACTIVATE_BTN,
+  GET_LIST_USERS,
+  ADD_USER,
 } from '../actions';
 
 const initialState = {
@@ -14,6 +16,7 @@ const initialState = {
     role: 'customer',
     btnDisable: true,
   },
+  listUsers: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -42,6 +45,16 @@ const adminReducer = (state = initialState, action) => {
     return {
       ...state,
       newUser: { ...state.newUser, btnDisable: action.value },
+    };
+  case GET_LIST_USERS:
+    return {
+      ...state,
+      listUsers: action.value,
+    };
+  case ADD_USER:
+    return {
+      ...state,
+      listUsers: [...state.listUsers, action.value],
     };
   default:
     return { ...state };
