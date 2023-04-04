@@ -3,6 +3,7 @@ import {
   NEW_USER_EMAIL,
   NEW_USER_PASSWORD,
   NEW_USER_ROLE,
+  ACTIVATE_BTN,
 } from '../actions';
 
 const initialState = {
@@ -36,6 +37,11 @@ const adminReducer = (state = initialState, action) => {
     return {
       ...state,
       newUser: { ...state.newUser, role: action.value },
+    };
+  case ACTIVATE_BTN:
+    return {
+      ...state,
+      newUser: { ...state.newUser, btnDisable: action.value },
     };
   default:
     return { ...state };
