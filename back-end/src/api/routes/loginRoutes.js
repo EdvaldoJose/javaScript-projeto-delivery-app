@@ -7,5 +7,6 @@ router.post('/register/adm', (req, res) => loginControllers.createUserByAdm(req,
 router.post('/register', (req, res) => loginControllers.createUser(req, res));
 router.post('/', (req, res) => loginControllers.login(req, res));
 router.get('/users', (req, res) => loginControllers.getAllUsers(req, res));
+router.delete('/users/:id', (req, res) => loginControllers.deleteUser(req, res));
 
 module.exports = router;
