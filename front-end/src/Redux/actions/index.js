@@ -19,6 +19,7 @@ export const NEW_USER_NAME = 'NEW_USER_NAME';
 export const NEW_USER_EMAIL = 'NEW_USER_EMAIL';
 export const NEW_USER_PASSWORD = 'NEW_USER_PASSWORD';
 export const NEW_USER_ROLE = 'NEW_USER_ROLE';
+export const ACTIVATE_BTN = 'ACTIVATE_BTN';
 
 export const userLoginEmail = (email) => ({ type: USER_LOGIN_EMAIL, email });
 export const userLoginName = (name) => ({ type: USER_LOGIN_NAME, name });
@@ -41,3 +42,4 @@ export const newUserName = (value) => ({ type: NEW_USER_NAME, value });
 export const newUserEmail = (value) => ({ type: NEW_USER_EMAIL, value });
 export const newUserPassword = (value) => ({ type: NEW_USER_PASSWORD, value });
 export const newUserRole = (value) => ({ type: NEW_USER_ROLE, value });
+export const activateBtn = (value) => ({ type: ACTIVATE_BTN, value });
