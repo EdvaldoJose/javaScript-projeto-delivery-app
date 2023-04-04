@@ -34,5 +34,15 @@ async function createUser(obj) {
 
   return { code: CREATED, role: newUser };
 }
+
+async function createUserByAdm({ username, password, email, role }) {
+  const data = await User.findOne({ where: { email } });
+  if (data) return { code: CONFLICT, message: 'Email ja esta em uso', type: 'INPUT_VALUE' };
+
+  const pass = md5(password);
+  const newUser = await User.create({ email, password: pass, name: username, role });
+
+  return { code: CREATED, user: newUser.dataValues };
+}
   
-module.exports = { login, createUser };
+module.exports = { login, createUser, createUserByAdm };
