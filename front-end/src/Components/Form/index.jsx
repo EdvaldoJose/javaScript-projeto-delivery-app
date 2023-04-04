@@ -9,8 +9,7 @@ import {
   ELEMENTPASSWORD,
   ROLESELECT,
   ELEMENTBTREGISTER,
-  ROUTEREGISTER,
-  ELEMENTINVALIDREGISTER } from '../../dataTesteIds';
+  ELEMENTINVALIDREGISTERADMIN } from '../../dataTesteIds';
 import {
   newUserName,
   newUserEmail,
@@ -106,7 +105,7 @@ function Form() {
         onclick={ cadastrarUser }
       />
       <Invalid
-        dataTesteId={ `${ROUTEREGISTER}__${ELEMENTINVALIDREGISTER}` }
+        dataTesteId={ `${ADMINMANAGE}${ELEMENTINVALIDREGISTERADMIN}` }
         message={ message }
         desabilitado={ disable }
       />
