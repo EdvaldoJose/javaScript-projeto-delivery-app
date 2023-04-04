@@ -26,21 +26,25 @@ function NavBar() {
         (role === 'administrator' || role === 'customer')
       && (
         <Link
-          to="/customer/products"
+          to={ role === 'administrator' ? '/admin/manage' : '/customer/products' }
           data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERLINKPRODUCTS}` }
         >
-          PRODUTOS
-
+          { role === 'administrator' ? 'Gerenciar Usuarios' : 'Produtos' }
         </Link>
       )
       }
-      <Link
-        to={ role === 'user' ? '/customer/orders' : '/seller/orders' }
-        data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERLINKORDERS}` }
-      >
-        { role === 'seller' ? 'Pedidos' : 'Meus Pedidos'}
+      {
+        role !== 'administrator'
+        && (
+          <Link
+            to={ role === 'customer' ? '/customer/orders' : '/seller/orders' }
+            data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERLINKORDERS}` }
+          >
+            { role === 'seller' ? 'Pedidos' : 'Meus Pedidos'}
 
-      </Link>
+          </Link>
+        )
+      }
       <p data-testid={ `${ROUTEPRODUCTS}__${CUSTOMERFULLNAME}` }>{ name }</p>
       <button
         type="button"
