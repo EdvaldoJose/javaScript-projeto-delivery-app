@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../Input';
 import {
@@ -12,7 +12,8 @@ import {
   newUserName,
   newUserEmail,
   newUserPassword,
-  newUserRole } from '../../Redux/actions';
+  newUserRole,
+  activateBtn } from '../../Redux/actions';
 import Button from '../Button';
 
 function Form() {
@@ -29,6 +30,17 @@ function Form() {
     if (name === 'input-password') return dispatch(newUserPassword(value));
     if (name === 'role') return dispatch(newUserRole(value));
   };
+
+  useEffect(() => {
+    const inputNameLength = 11;
+    const inputPasswordLength = 5;
+    const inputEmail = /^\S+@\S+\.\S+$/.test(email);
+    const validate = username.length > inputNameLength
+    && inputEmail && password.length > inputPasswordLength;
+    console.log(validate);
+    if (validate) return dispatch(activateBtn(false));
+    dispatch(activateBtn(true));
+  }, [dispatch, email, password, username]);
   return (
     <form>
       <Input
