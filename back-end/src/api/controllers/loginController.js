@@ -16,4 +16,11 @@ async function createUser(req, res) {
   return res.status(code).json(role);
 }
 
-module.exports = { login, createUser };
+async function createUserByAdm(req, res) {
+  const { code, message, type, user } = await service.createUserByAdm(req.body);
+  if (type) return res.status(code).json({ message });
+
+  res.status(code).json(user);
+}
+
+module.exports = { login, createUser, createUserByAdm };
