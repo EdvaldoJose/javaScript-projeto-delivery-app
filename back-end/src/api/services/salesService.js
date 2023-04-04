@@ -43,4 +43,15 @@ const getProductsBySaleId = async (id) => {
   return list;
 };
 
-module.exports = { createSale, getAllSellers, findAllById, getProductsBySaleId };
+const updateSaleStatus = async (status, id) => {
+  const result = await Sale.update({ status }, { where: { id } });
+  return result;
+};
+
+module.exports = {
+  createSale, 
+  getAllSellers, 
+  findAllById, 
+  getProductsBySaleId,
+  updateSaleStatus,
+};
