@@ -4,8 +4,11 @@ import { useParams } from 'react-router-dom';
 import NavBar from '../../Components/NavBar';
 import { getSales } from '../../Redux/actions';
 import getSaleById from '../../utils/getProductsBySale';
+import useSellerOrders from '../../utils/getSellerOrders';
+import updateSaleStatus from '../../utils/updateSaleStatus';
 
 function SellerOrderDetails() {
+  useSellerOrders();
   const { listProducts, sales, sellerOrders } = useSelector((state) => state.products);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -53,15 +56,18 @@ function SellerOrderDetails() {
           {`Status: ${salesorders.status}`}
         </p>
         <button
+          onClick={ () => updateSaleStatus('Preparando', id) }
           data-testid="seller_order_details__button-preparing-check"
           type="button"
+          disabled={ salesorders.status !== 'Pendente' }
         >
           PREPARAR PEDIDO
         </button>
         <button
+          onClick={ () => updateSaleStatus('Em Trânsito', id) }
           type="button"
           data-testid="seller_order_details__button-dispatch-check"
-          disabled
+          disabled={ salesorders.status !== 'Preparando' }
         >
           SAIU PARA ENTREGA
 
