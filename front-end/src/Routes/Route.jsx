@@ -7,6 +7,7 @@ import Checkout from '../Pages/Checkout/checkout';
 import SellerOrders from '../Pages/SellerOrders';
 import Customer from '../Pages/Customer';
 import SellerOrderDetails from '../Pages/SellerOrdersDetails';
+import Adm from '../Pages/Adm';
 
 function Rotas() {
   return (
@@ -23,6 +24,7 @@ function Rotas() {
       <Route exact path="/customer/orders/:id" component={ Customer } />
       <Route path="/customer/checkout" component={ Checkout } />
       <Route exact path="/seller/orders" component={ SellerOrders } />
+      <Route path="/admin/manage" component={ Adm } />
     </Switch>
   );
 }
