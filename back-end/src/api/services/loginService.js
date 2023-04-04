@@ -51,5 +51,15 @@ async function getAllUsers() {
     where: { [Op.or]: [{ role: 'customer' }, { role: 'seller' }] } });
   return data;
 }
+
+async function deleteUser(id) {
+  const data = await User.destroy({ where: { id } });
+  return data;
+}
   
-module.exports = { login, createUser, createUserByAdm, getAllUsers };
+module.exports = {
+  login, 
+  createUser, 
+  createUserByAdm, 
+  getAllUsers,
+  deleteUser };
