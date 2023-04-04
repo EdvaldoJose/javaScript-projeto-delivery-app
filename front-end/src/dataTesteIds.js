@@ -36,6 +36,7 @@ const ROUTESELLERORDERS = 'seller_orders__';
 // ADMIN MANAGE
 const ADMINMANAGE = 'admin_manage__';
 const ROLESELECT = 'select-role';
+const ELEMENTINVALIDREGISTERADMIN = 'element-invalid-register';
 
 export {
   ROUTEREGISTER,
@@ -67,4 +68,5 @@ export {
   ROUTESELLERORDERS,
   ADMINMANAGE,
   ROLESELECT,
+  ELEMENTINVALIDREGISTERADMIN,
 };
