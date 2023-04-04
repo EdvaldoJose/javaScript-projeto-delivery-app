@@ -16,7 +16,8 @@ import {
   newUserPassword,
   newUserRole,
   activateBtn,
-  logginFailed } from '../../Redux/actions';
+  logginFailed,
+  addNewUser } from '../../Redux/actions';
 import Button from '../Button';
 import Invalid from '../Invalid';
 
@@ -50,12 +51,13 @@ function Form() {
 
   const cadastrarUser = async () => {
     try {
-      await axios.post(
+      const response = await axios.post(
         'http://localhost:3001/login/register/adm',
         { username, password, email, role },
 
         { headers: { Authorization: user.token } },
       );
+      dispatch(addNewUser(response.data));
     } catch ({ response }) {
       dispatch(logginFailed(response.data));
     }
