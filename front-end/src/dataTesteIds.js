@@ -33,6 +33,10 @@ const INPUTNUMBER = 'input-address-number';
 // SELLER ORDERS
 const ROUTESELLERORDERS = 'seller_orders__';
 
+// ADMIN MANAGE
+const ADMINMANAGE = 'admin_manage__';
+const ROLESELECT = 'select-role';
+
 export {
   ROUTEREGISTER,
   ROUTE,
@@ -61,4 +65,6 @@ export {
   FINISHBUTTON,
   INPUTNUMBER,
   ROUTESELLERORDERS,
+  ADMINMANAGE,
+  ROLESELECT,
 };
