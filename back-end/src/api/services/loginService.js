@@ -45,5 +45,11 @@ async function createUserByAdm({ username, password, email, role }) {
 
   return { code: CREATED, user: newUser.dataValues };
 }
+
+async function getAllUsers() {
+  const data = await User.findAll({ 
+    where: { [Op.or]: [{ role: 'customer' }, { role: 'seller' }] } });
+  return data;
+}
   
-module.exports = { login, createUser, createUserByAdm };
+module.exports = { login, createUser, createUserByAdm, getAllUsers };
