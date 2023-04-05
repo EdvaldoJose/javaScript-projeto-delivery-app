@@ -30,10 +30,17 @@ const updateSaleStatus = async (req, res) => {
   res.status(200).json({ message: `Pedido alterado para ${status}` });
 };
 
+const getAllCustomerOrder = async (req, res) => {
+  const { id } = req.params;
+  const data = await salesService.findCustomerOrders(id);
+  res.status(200).json(data);
+};
+
 module.exports = {
   getAllSellers,
   createSales,
   getAllSalesOrders,
   getProductsBySale,
   updateSaleStatus,
+  getAllCustomerOrder,
 };
