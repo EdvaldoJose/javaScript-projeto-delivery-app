@@ -38,6 +38,11 @@ const findAllById = async (id) => {
   return orders;
 };
 
+const findCustomerOrders = async (id) => {
+  const orders = await Sale.findAll({ where: { userId: id } });
+  return orders;
+};
+
 const getProductsBySaleId = async (id) => {
   const list = await SaleProduct.findAll({ where: { saleId: id } });
   return list;
@@ -54,4 +59,5 @@ module.exports = {
   findAllById, 
   getProductsBySaleId,
   updateSaleStatus,
+  findCustomerOrders,
 };
