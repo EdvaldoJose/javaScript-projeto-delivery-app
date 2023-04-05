@@ -11,8 +11,9 @@ import {
 import { quitLogin } from '../../Redux/actions';
 
 function NavBar() {
+  const { role } = JSON.parse(localStorage.getItem('user')) || null;
   const history = useHistory();
-  const { name, role } = useSelector((state) => state.user);
+  const { name } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const quit = () => {
