@@ -26,6 +26,14 @@ function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user')) || null;
+    if (!user) return history.push('/login');
+    if (user.role === 'customer') return history.push('/customer/products');
+    if (user.role === 'seller') return history.push('/seller/orders');
+    if (user.role === 'administrator') return history.push('/admin/manage');
+  }, []);
+
   const redirect = () => history.push('/register');
 
   const handleInputChange = ({ target: { value, name } }) => {
