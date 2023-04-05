@@ -1,53 +1,52 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useParams } from 'react-router-dom';
 import NavBar from '../../Components/NavBar';
-import getSaleById from '../../utils/getProductsBySale';
-import { getSales } from '../../Redux/actions';
+// import getSaleById from '../../utils/getProductsBySale';
+// import { getSales } from '../../Redux/actions';
 import useGetSellers from '../../utils/getAllSellers';
 import useCustomerOrders from '../../utils/useCustomerOrders';
 
 function CustomerOrderDetails() {
   useCustomerOrders();
   useGetSellers();
-  const { listCustomerOrder } = useSelector((state) => state.customer);
-  const { listProducts, sales } = useSelector((state) => state.products);
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const customerOrder = listCustomerOrder.find((item) => item.id === Number(id));
-  console.log(customerOrder);
+  // const { listCustomerOrder } = useSelector((state) => state.customer);
+  // const { listProducts, sales } = useSelector((state) => state.products);
+  // const { id } = useParams();
+  // const dispatch = useDispatch();
+  // const customerOrder = listCustomerOrder.find((item) => item.id === Number(id));
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const result = await getSaleById(id);
-      const data = listProducts.filter(
-        (item) => result.some((resultITem) => resultITem.productId === item.id),
-      ).map(
-        (product) => ({
-          ...product,
-          quantity: result.find(
-            (resultItem) => resultItem.productId === product.id,
-          ).quantity,
-        }),
-      );
-      dispatch(getSales(data));
-    };
-    getProducts();
-  }, [id, listProducts, dispatch]);
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     const result = await getSaleById(id);
+  //     const data = listProducts.filter(
+  //       (item) => result.some((resultITem) => resultITem.productId === item.id),
+  //     ).map(
+  //       (product) => ({
+  //         ...product,
+  //         quantity: result.find(
+  //           (resultItem) => resultItem.productId === product.id,
+  //         ).quantity,
+  //       }),
+  //     );
+  //     dispatch(getSales(data));
+  //   };
+  //   getProducts();
+  // }, [id, listProducts, dispatch]);
 
-  const date = (itemData) => {
-    const data = new Date(itemData);
-    const formatedData = `${
-      data.getDate().toString().padStart(2, '0')}/${(
-      data.getMonth() + 1).toString().padStart(2, '0')}/${data.getFullYear()}`;
-    return formatedData;
-  };
+  // const date = (itemData) => {
+  //   const data = new Date(itemData);
+  //   const formatedData = `${
+  //     data.getDate().toString().padStart(2, '0')}/${(
+  //     data.getMonth() + 1).toString().padStart(2, '0')}/${data.getFullYear()}`;
+  //   return formatedData;
+  // };
 
   return (
     <>
       <NavBar />
       <h2>Detalhe do Pedido</h2>
-      <div>
+      {/* <div>
         <p
           data-testid="customer_order_details__element-order-details-label-order-id"
         >
@@ -73,7 +72,7 @@ function CustomerOrderDetails() {
           onClick={ () => attStatusOrder('Preparando', id) }
           data-testid="customer_order_details__button-delivery-check"
           type="button"
-          disabled={ customerOrder.status !== 'Entregue' }
+          disabled={ customerOrder.status !== 'Em Trânsito' }
         >
           MARCAR COMO ENTREGUE
         </button>
@@ -142,7 +141,7 @@ function CustomerOrderDetails() {
         data-testid="customer_order_details__element-order-total-price"
       >
         {`Total: ${customerOrder.totalPrice.replace('.', ',')}`}
-      </p>
+      </p> */}
     </>
   );
 }
