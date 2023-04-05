@@ -5,8 +5,10 @@ import NavBar from '../../Components/NavBar';
 import useProducts from '../../utils/getProducts';
 import { ROUTEPRODUCTS } from '../../dataTesteIds';
 import { quitLogin, atualizaItems, addSubtotal } from '../../Redux/actions';
+import useCustomerOrders from '../../utils/useCustomerOrders';
 
 function Products() {
+  useCustomerOrders();
   const { listProducts, total, btnDisable } = useSelector((state) => state.products);
   localStorage.setItem('products', JSON.stringify(listProducts));
   useProducts();
