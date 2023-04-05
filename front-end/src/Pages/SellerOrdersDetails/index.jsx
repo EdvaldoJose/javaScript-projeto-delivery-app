@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import NavBar from '../../Components/NavBar';
-import { getSales } from '../../Redux/actions';
+import { getSales, getSellerOrders } from '../../Redux/actions';
 import getSaleById from '../../utils/getProductsBySale';
 import useSellerOrders from '../../utils/getSellerOrders';
 import updateSaleStatus from '../../utils/updateSaleStatus';
@@ -35,6 +36,13 @@ function SellerOrderDetails() {
     };
     getProducts();
   }, [id, listProducts, dispatch]);
+
+  const attStatusOrder = async (status, saleId) => {
+    await updateSaleStatus(status, saleId);
+
+    const response = await axios.get(`http://localhost:3001/sales/orders/${salesorders.sellerId}`);
+    dispatch(getSellerOrders(response.data));
+  };
   return (
     <>
       <NavBar />
@@ -56,7 +64,7 @@ function SellerOrderDetails() {
           {`Status: ${salesorders.status}`}
         </p>
         <button
-          onClick={ () => updateSaleStatus('Preparando', id) }
+          onClick={ () => attStatusOrder('Preparando', id) }
           data-testid="seller_order_details__button-preparing-check"
           type="button"
           disabled={ salesorders.status !== 'Pendente' }
@@ -64,7 +72,7 @@ function SellerOrderDetails() {
           PREPARAR PEDIDO
         </button>
         <button
-          onClick={ () => updateSaleStatus('Em Trânsito', id) }
+          onClick={ () => attStatusOrder('Em Trânsito', id) }
           type="button"
           data-testid="seller_order_details__button-dispatch-check"
           disabled={ salesorders.status !== 'Preparando' }
