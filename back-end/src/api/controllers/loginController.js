@@ -16,4 +16,26 @@ async function createUser(req, res) {
   return res.status(code).json(role);
 }
 
-module.exports = { login, createUser };
+async function createUserByAdm(req, res) {
+  const { code, message, type, user } = await service.createUserByAdm(req.body);
+  if (type) return res.status(code).json({ message });
+
+  res.status(code).json(user);
+}
+
+async function getAllUsers(_req, res) {
+  const result = await service.getAllUsers();
+  res.status(200).json(result);
+}
+
+async function deleteUser(req, res) {
+  const result = await service.deleteUser(req.params.id);
+  res.status(200).json(result);
+}
+
+module.exports = { 
+  login, 
+  createUser, 
+  createUserByAdm, 
+  getAllUsers, 
+  deleteUser };

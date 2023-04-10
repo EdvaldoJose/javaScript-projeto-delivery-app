@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const { Op } = require('sequelize');
 const { NOT_FOUND, HTTP_OK, CREATED, CONFLICT } = require('../utils/http_status');
 
 const { User } = require('../../database/models');
@@ -34,5 +35,31 @@ async function createUser(obj) {
 
   return { code: CREATED, role: newUser };
 }
+
+async function createUserByAdm({ username, password, email, role }) {
+  const data = await User.findOne({ where: { [Op.or]: [{ email }, { name: username }] } });
+  if (data) return { code: CONFLICT, message: 'Name ou Email em uso', type: 'INPUT_VALUE' };
+
+  const pass = md5(password);
+  const newUser = await User.create({ email, password: pass, name: username, role });
+
+  return { code: CREATED, user: newUser.dataValues };
+}
+
+async function getAllUsers() {
+  const data = await User.findAll({ 
+    where: { [Op.or]: [{ role: 'customer' }, { role: 'seller' }] } });
+  return data;
+}
+
+async function deleteUser(id) {
+  const data = await User.destroy({ where: { id } });
+  return data;
+}
   
-module.exports = { login, createUser };
+module.exports = {
+  login, 
+  createUser, 
+  createUserByAdm, 
+  getAllUsers,
+  deleteUser };

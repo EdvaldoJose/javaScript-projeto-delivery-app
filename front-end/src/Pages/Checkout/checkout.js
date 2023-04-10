@@ -2,13 +2,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import {
   addEndereco,
   addEnderecoNumber,
   atualizaItems,
   selectSeller,
   addSubtotal,
-} from '../../Redux/actions';
+  getCustomerOrders } from '../../Redux/actions';
 import NavBar from '../../Components/NavBar';
 import Tr from '../../Components/Tr';
 import {
@@ -81,6 +82,8 @@ export default function Checkout() {
     };
 
     const id = await createSale(objSale, user.token);
+    const response = await axios.get(`http://localhost:3001/sales/orders/customer/${user.id}`);
+    dispatch(getCustomerOrders(response.data));
     history.push(`/customer/orders/${id}`);
   };
 

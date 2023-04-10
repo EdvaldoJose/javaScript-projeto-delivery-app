@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavBar from '../../Components/NavBar';
+import useProducts from '../../utils/getProducts';
 import useSellerOrders from '../../utils/getSellerOrders';
 
 function SellerOrders() {
   useSellerOrders();
-  const history = useHistory();
+  useProducts();
   const { sellerOrders } = useSelector((state) => state.products);
+
   return (
     <>
       <NavBar />
@@ -15,19 +17,19 @@ function SellerOrders() {
         {
           sellerOrders.map((item, index) => (
             <div key={ index }>
-              <button
-                type="button"
+              <Link
                 data-testid={ `seller_orders__element-order-id-${item.id}` }
-                onClick={ () => history.push(`/seller/orders/${item.id}`) }
+                to={ `/seller/orders/${item.id}` }
               >
                 { item.id }
-              </button>
+              </Link>
               <div>
-                <div
+                <Link
                   data-testid={ `seller_orders__element-delivery-status-${item.id}` }
+                  to={ `/seller/orders/${item.id}` }
                 >
                   {item.status}
-                </div>
+                </Link>
                 <p
                   data-testid={ `seller_orders__element-card-address-${item.id}` }
                 >

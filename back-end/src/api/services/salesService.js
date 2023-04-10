@@ -35,9 +35,29 @@ const createSale = async ({
 
 const findAllById = async (id) => {
   const orders = await Sale.findAll({ where: { sellerId: id } });
-  console.log(orders);
-
   return orders;
 };
 
-module.exports = { createSale, getAllSellers, findAllById };
+const findCustomerOrders = async (id) => {
+  const orders = await Sale.findAll({ where: { userId: id } });
+  return orders;
+};
+
+const getProductsBySaleId = async (id) => {
+  const list = await SaleProduct.findAll({ where: { saleId: id } });
+  return list;
+};
+
+const updateSaleStatus = async (status, id) => {
+  const result = await Sale.update({ status }, { where: { id } });
+  return result;
+};
+
+module.exports = {
+  createSale, 
+  getAllSellers, 
+  findAllById, 
+  getProductsBySaleId,
+  updateSaleStatus,
+  findCustomerOrders,
+};
